@@ -21,11 +21,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-
+    public static Context context_main;
+    public WebLogic w = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        context_main = this;
 
         Button imageButton = (Button) findViewById(R.id.btn_login);
         imageButton.setOnClickListener(new View.OnClickListener() {
@@ -42,7 +45,8 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
 
-                WebLogic w = new WebLogic(email, pw); // id , password
+                w = new WebLogic(email, pw);
+
                 if(!w.attemptLogin()) {
                     Toast.makeText(getApplicationContext(),"로그인 실패!", Toast.LENGTH_SHORT).show();
                     return;

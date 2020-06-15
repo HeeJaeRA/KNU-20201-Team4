@@ -45,10 +45,7 @@ public class GridListAdapter extends BaseAdapter {
         }
 
         TextView sNameText = convertView.findViewById(R.id.Tv_sName);
-        TextView sTimeText = convertView.findViewById(R.id.Tv_sTime);
-
         sNameText.setText(listItem.getsName());
-        sTimeText.setText(listItem.getsTime());
 
         return convertView;
     }

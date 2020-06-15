@@ -6,8 +6,10 @@ import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 public class WebLogic {
-    UserLoginTask mAuthTask = null;
-    public Map<String, String> UserCookie;
+    public UserLoginTask mAuthTask = null;
+    public CrawlingScheduleTask CST = null;
+
+    public Map<String, String> UserCookie = null;
     private String email;
     private String password;
 
@@ -30,21 +32,24 @@ public class WebLogic {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (ExecutionException e) {
-                Log.e("log", e.toString());
                 e.printStackTrace();
             }
             String arg = UserCookie.toString();
 
             if (arg.length() > 30) {
-                Log.e("msg", UserCookie.toString());
+                //Log.e("msg", UserCookie.toString());
             } else {
                 Log.e("msg", "로그인 실패!");
                 return false;
             }
 
-            CrawlingScheduleTask CST = new CrawlingScheduleTask(UserCookie);
+            CST = new CrawlingScheduleTask(UserCookie);
             CST.execute((Void) null);
         }
         return true;
+    }
+
+    public Subject[] getSchedule() {
+        return CST.getSchedule();
     }
 }

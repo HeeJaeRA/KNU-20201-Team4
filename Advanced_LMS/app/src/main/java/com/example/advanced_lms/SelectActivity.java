@@ -18,7 +18,6 @@ public class SelectActivity extends AppCompatActivity {
 
         Button imageButton = (Button) findViewById(R.id.btn_Timetable);
         imageButton.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), TimetableActivity.class);

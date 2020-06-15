@@ -16,11 +16,25 @@ import java.net.ProtocolException;
 import java.util.HashMap;
 import java.util.Map;
 
+class Subject {
+    private String subName;
+    private String subDATE;
+    Subject(String subName, String subDATE) {
+        setName(subName);
+        setDATE(subDATE);
+    }
+    Subject() {}
+    public String getName() { return subName; }
+    public String getDATE() { return subDATE; }
+    public void setName(String subName) { this.subName = subName; }
+    public void setDATE(String subCode) { this.subDATE = subCode; }
+}
+
+
 public class CrawlingScheduleTask extends AsyncTask<Void, Void, Map<String, String>> {
     public Map<String, String> UserCookie;
     public Subject[] Subject_list = new Subject[8];
     public int SizeofSubject = 0;
-
 
     CrawlingScheduleTask(Map<String, String> UserCookie) {
         this.UserCookie = UserCookie;
@@ -38,7 +52,6 @@ public class CrawlingScheduleTask extends AsyncTask<Void, Void, Map<String, Stri
 
             for(Element emp : e) {
                 Subject_list[SizeofSubject++] = new Subject(emp.text().substring(0, emp.text().indexOf('(')), emp.parent().select("span").text());
-                Log.e("msg", Subject_list[SizeofSubject-1].getName() + "_" + Subject_list[SizeofSubject-1].getDATE());
             }
         } catch (MalformedURLException e) {
             e.printStackTrace();
@@ -55,9 +68,9 @@ public class CrawlingScheduleTask extends AsyncTask<Void, Void, Map<String, Stri
     @Override
     protected void onPostExecute(final Map<String, String> success) {
         if (success.toString().length() > 30) {
-            Log.e("log", success.toString());
+            //Log.e("log", success.toString());
         } else {
-            Log.e("log", "실패");
+            Log.e("log", "Login Fail");
         }
     }
 
@@ -66,19 +79,8 @@ public class CrawlingScheduleTask extends AsyncTask<Void, Void, Map<String, Stri
 
     }
 
-
-    public class Subject {
-        private String subName;
-        private String subDATE;
-        Subject(String subName, String subDATE) {
-            setName(subName);
-            setDATE(subDATE);
-        }
-        Subject() {}
-        public String getName() { return subName; }
-        public String getDATE() { return subDATE; }
-        public void setName(String subName) { this.subName = subName; }
-        public void setDATE(String subCode) { this.subDATE = subCode; }
+    public Subject[] getSchedule() {
+        return Subject_list;
     }
 }
 

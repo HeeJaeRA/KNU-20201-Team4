@@ -5,6 +5,7 @@
     <color name="colorAccent">#FF4081</color>
     <color name="bg_login">#26ae90</color>
     <color name="bg_register">#da2127</color>
+    <!--<color name="bg_register">#c83633</color>-->
     <color name="bg_main">#428bca</color>
     <color name="white">#ffffff</color>
     <color name="input_login">#222222</color>
