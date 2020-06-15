@@ -16,11 +16,10 @@ public class WebLogic {
         this.password = password;
     }
 
-    public void attemptLogin() {
+    public boolean attemptLogin() {
         if (mAuthTask != null) {
-            return;
+            return true;
         }
-
 
         boolean cancel = false;
 
@@ -36,16 +35,16 @@ public class WebLogic {
             }
             String arg = UserCookie.toString();
 
-            if(arg.length() > 30) {
+            if (arg.length() > 30) {
                 Log.e("msg", UserCookie.toString());
-            }
-            else {
+            } else {
                 Log.e("msg", "로그인 실패!");
-                return;
+                return false;
             }
 
             CrawlingScheduleTask CST = new CrawlingScheduleTask(UserCookie);
             CST.execute((Void) null);
         }
+        return true;
     }
 }

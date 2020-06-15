@@ -58,7 +58,7 @@ public class UserLoginTask extends AsyncTask<Void, Void, Map<String, String>> {
         if (success.toString().length() > 30) {
             Log.e("log", success.toString());
         } else {
-            Log.e("log", "응 에러");
+            Log.e("log", "ErrorLog");
         }
     }
 

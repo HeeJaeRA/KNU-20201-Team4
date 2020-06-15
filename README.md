@@ -9,3 +9,4 @@ SE project(Advanced LMS Project)
 * 2020-06-03 SelectActivity 작성<BR>
 * 2020-06-03 TimetableActivity 디자인 수정<BR>
 * 2020-06-03 각 Activity간 연결<BR>
+* 2020-06-15 로그인 기능 연동<BR>
