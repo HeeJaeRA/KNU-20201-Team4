@@ -87,11 +87,13 @@ public class TimetableActivity extends AppCompatActivity {
         // 과목 등록
         if(subs != null) {
             for(Subject sub : subs) {
-                for (int i[] : getIdx(sub.getDATE())) {
-                    for (int j : i) {
-                        setItem(j, sub);
+                try {
+                    for (int i[] : getIdx(sub.getDATE())) {
+                        for (int j : i) {
+                            setItem(j, sub);
+                        }
                     }
-                }
+                } catch(NullPointerException e) {}
             }
         }
         gridView.setAdapter(adapter);
