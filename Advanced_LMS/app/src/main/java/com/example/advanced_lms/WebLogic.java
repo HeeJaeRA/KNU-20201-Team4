@@ -56,11 +56,31 @@ public class WebLogic {
         return CST.getSchedule();
     }
 
-    public void getGroupList(int number) {
-        //CGT.execute("list", Integer.toString(number * 15 + 1));
+    public void getGroupList(int PageNumber) {
+        CGT.execute("list", Integer.toString(PageNumber * 15 + 1));
     }
 
-    public void setRegisterGroup(int number) {
-        CGT.execute("Register", Integer.toString(1683));
+    public void setRegisterGroup(int GroupNumber) {
+        CGT.execute("Register", Integer.toString(GroupNumber));
+    }
+
+    public void writeGroup(int GroupNumber, String Title, String Content) {
+        CGT.execute("writeGroup", Integer.toString(GroupNumber), Title, Content);
+    }
+
+    public void getListGroupContent(int GroupNumber) {
+        CGT.execute("ListGroupContent", Integer.toString(GroupNumber));
+    }
+
+    public void writeComment(int GroupNumber, int ArticleNumber, String Content) {
+        CGT.execute("AddComment", Integer.toString(GroupNumber), Integer.toString(ArticleNumber), Content);
+    }
+
+    public void RemoveComment(int GroupNumber, int ArticleNumber, int CommentNumber) {
+        CGT.execute("RemoveComment", Integer.toString(GroupNumber), Integer.toString(ArticleNumber), Integer.toString(CommentNumber));
+    }
+
+    public void DropGroup(int GroupNumber) {
+        CGT.execute("DropGroup", Integer.toString(GroupNumber));
     }
 }

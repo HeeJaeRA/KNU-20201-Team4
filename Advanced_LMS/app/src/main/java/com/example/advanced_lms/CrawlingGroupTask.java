@@ -91,6 +91,173 @@ public class CrawlingGroupTask extends AsyncTask<String, Void, Map<String, Strin
                     e.printStackTrace();
                 }
                 break;
+
+            case "writeGroup" :
+                try {
+                    Connection.Response res = Jsoup.connect("http://lms.knu.ac.kr/ilos/community/share_insert.acl")
+                            .header("HOST", "lms.knu.ac.kr")
+                            .data("CLUB_GRP_ID", voids[1],
+                                    "SBJT", voids[2],
+                                    "TXT", voids[3],
+                                    "FILE_SEQS", "",
+                                    "D_FILE_SEQS", "",
+                                    "encoding", "utf-8")
+                            .ignoreContentType(true)
+                            .userAgent(userAgent)
+                            .cookies(UserCookie)
+                            .method(Connection.Method.POST)
+                            .timeout(5000)
+                            .execute();
+
+                    Document doc = res.parse();
+
+                    Log.e("result", doc.text());
+
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                } catch (ProtocolException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                break;
+            case "ListGroupContent" : // 게시글 확인
+                try {
+                    Connection.Response res = Jsoup.connect("http://lms.knu.ac.kr/ilos/community/share_list.acl")
+                            .header("HOST", "lms.knu.ac.kr")
+                            .data("CLUB_GRP_ID", voids[1],
+                                    "member_div", "1",
+                                    "SCH_VALUE", "",
+                                    "startL", "1",
+                                    "encoding", "utf-8")
+                            .ignoreContentType(true)
+                            .userAgent(userAgent)
+                            .cookies(UserCookie)
+                            .method(Connection.Method.POST)
+                            .timeout(5000)
+                            .execute();
+
+                    Document doc = res.parse();
+
+                    Elements e = doc.select(".view_art");
+
+                    for(int i = 0; i < e.size(); ++i) {
+                        String Title = e.get(i).select(".list_title").text();
+                        String Description = e.get(i).select(".list_cont").text();
+                        Elements Comments = e.get(i).parent().select(".comment-list");
+                        String ArticleNumber = e.get(i).parent().select(".comment_wrap").attr("num");
+
+
+
+                        Log.e("Title", Title + " _ " + ArticleNumber);
+                        Log.e("Description", Description);
+                        for(Element Comment : Comments) {
+                            String CommentNumber = Comment.select(".comment-addr").attr("id").split("_")[2];
+                            Log.e("Comment", CommentNumber + "/" + Comment.select(".comment-name").text() + ": " +Comment.select(".comment-addr").text());
+                        }
+
+                    }
+
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                } catch (ProtocolException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                break;
+            case "AddComment" :
+                try {
+                    Connection.Response res = Jsoup.connect("http://lms.knu.ac.kr/ilos/community/share_comment_insert.acl")
+                            .header("HOST", "lms.knu.ac.kr")
+                            .data("CLUB_GRP_ID", voids[1],
+                                    "ARTL_NUM", voids[2],
+                                    "CMT", voids[3],
+                                    "i", "1",
+                                    "encoding", "utf-8")
+                            .ignoreContentType(true)
+                            .userAgent(userAgent)
+                            .cookies(UserCookie)
+                            .method(Connection.Method.POST)
+                            .timeout(5000)
+                            .execute();
+
+                    Document doc = res.parse();
+
+                    Log.e("Result", doc.text());
+
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                } catch (ProtocolException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                break;
+            case "RemoveComment" :
+                try {
+                    Connection.Response res = Jsoup.connect("http://lms.knu.ac.kr/ilos/community/share_comment_delete.acl")
+                            .header("HOST", "lms.knu.ac.kr")
+                            .data("CLUB_GRP_ID", voids[1],
+                                    "ARTL_NUM", voids[2],
+                                    "CMMT_NUM", voids[3],
+                                    "i", "1",
+                                    "encoding", "utf-8")
+                            .ignoreContentType(true)
+                            .userAgent(userAgent)
+                            .cookies(UserCookie)
+                            .method(Connection.Method.POST)
+                            .timeout(5000)
+                            .execute();
+
+                    Document doc = res.parse();
+
+                    Log.e("Result", doc.text());
+
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                } catch (ProtocolException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                break;
+            case "DropGroup" :
+                try {
+                    Connection.Response res = Jsoup.connect("http://lms.knu.ac.kr/ilos/community/share_auth_drop_me.acl")
+                            .header("HOST", "lms.knu.ac.kr")
+                            .data("CLUB_GRP_ID", voids[1],
+                                    "encoding", "utf-8")
+                            .ignoreContentType(true)
+                            .userAgent(userAgent)
+                            .cookies(UserCookie)
+                            .method(Connection.Method.POST)
+                            .timeout(5000)
+                            .execute();
+
+                    Document doc = res.parse();
+
+                    Log.e("Result", doc.text());
+
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                } catch (ProtocolException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                break;
         }
 
         return null;
