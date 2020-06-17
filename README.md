@@ -12,3 +12,4 @@ SE project(Advanced LMS Project)
 * 2020-06-15 로그인 기능 연동<BR>
 * 2020-06-15 시간표 기능 연동<BR>
 * 2020-06-15 MainActivity 디자인 리뉴얼<BR>
+* 2020-06-17 소모임 목록, 소모임 가입 크롤링 코드 작성 <BR>

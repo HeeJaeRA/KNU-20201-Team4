@@ -8,6 +8,7 @@ import java.util.concurrent.ExecutionException;
 public class WebLogic {
     public UserLoginTask mAuthTask = null;
     public CrawlingScheduleTask CST = null;
+    public CrawlingGroupTask CGT = null;
 
     public Map<String, String> UserCookie = null;
     private String email;
@@ -45,11 +46,21 @@ public class WebLogic {
 
             CST = new CrawlingScheduleTask(UserCookie);
             CST.execute((Void) null);
+
+            CGT = new CrawlingGroupTask(UserCookie);
         }
         return true;
     }
 
     public Subject[] getSchedule() {
         return CST.getSchedule();
+    }
+
+    public void getGroupList(int number) {
+        //CGT.execute("list", Integer.toString(number * 15 + 1));
+    }
+
+    public void setRegisterGroup(int number) {
+        CGT.execute("Register", Integer.toString(1683));
     }
 }

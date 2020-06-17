@@ -62,10 +62,7 @@ public class TimetableActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timetable);
 
-        //Log.e("msg",((MainActivity)MainActivity.context_main).w.UserCookie.toString());
-
-        //if() {
-        subs = ((MainActivity)MainActivity.context_main).w.CST.getSchedule(); //((MainActivity) MainActivity.context_main).w.CST.Subject_list;
+        subs = ((MainActivity)MainActivity.context_main).w.CST.getSchedule();
 
         GridView gridView = findViewById(R.id.grid_timetable);
 

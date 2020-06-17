@@ -24,5 +24,15 @@ public class SelectActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        Button buttonGroup = (Button) findViewById(R.id.btn_Group);
+
+        buttonGroup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //((MainActivity)MainActivity.context_main).w.getGroupList(1); // 소모임 확인 테스트
+                //((MainActivity)MainActivity.context_main).w.setRegisterGroup(1683); // 소모임 가입 테스트
+            }
+        });
     }
 }
