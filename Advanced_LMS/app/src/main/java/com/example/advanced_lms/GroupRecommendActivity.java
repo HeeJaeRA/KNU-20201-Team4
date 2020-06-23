@@ -17,35 +17,37 @@ import java.util.List;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
-public class GroupRecommendActivity extends AppCompatActivity implements GroupListAdapter.ListBtnClickListener {
-
-    public boolean loadItemsFromDB(ArrayList<GroupListItem> list) {
-        GroupListItem item;
-        int i;
-
-        item = new GroupListItem();
-        item.setName("소모임 이름이지롱");
-        item.setInfo("이건 정보지롱");
-        list.add(item);
-
-        return true;
-    }
-
+public class GroupRecommendActivity extends AppCompatActivity {
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grouprecommend);
 
-        ListView listview = (ListView) findViewById(R.id.list_group);
+        ListView listview ;
         GroupListAdapter adapter;
-        ArrayList<GroupListItem>items = new ArrayList<GroupListItem>();
-        loadItemsFromDB(items) ;
-        adapter = new GroupListAdapter(this, R.layout.group_item, items,this) ;
-    }
 
-    @Override
-    public void onListBtnClick(int position) {
+        // Adapter 생성
+        adapter = new GroupListAdapter() ;
+
+        // 리스트뷰 참조 및 Adapter달기
+        listview = (ListView) findViewById(R.id.list_group);
+        listview.setAdapter(adapter);
+
+        for(int i = 0 ; i < 50; i++) {
+            adapter.addItem(ContextCompat.getDrawable(this, R.drawable.logo_knu),
+                    "소모임 이름" + i, "소모임 설명" + i);
+        }
+
+        Button b = (Button) findViewById(R.id.btn_join);
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), GroupWebViewActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 }

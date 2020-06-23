@@ -1,90 +1,79 @@
 package com.example.advanced_lms;
-import android.app.Activity;
+
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 
-import androidx.annotation.NonNull;
+public class GroupListAdapter extends BaseAdapter {
+    // Adapter에 추가된 데이터를 저장하기 위한 ArrayList
+    private ArrayList<GroupListItem> listViewItemList = new ArrayList<GroupListItem>() ;
 
-public class GroupListAdapter extends ArrayAdapter implements View.OnClickListener  {
-    public GroupListAdapter(@NonNull Context context, int resource) {
-        super(context, resource);
+    // ListViewAdapter의 생성자
+    public void ListViewAdapter() {
+
     }
 
-
-    // 버튼 클릭 이벤트를 위한 Listener 인터페이스 정의.
-    public interface ListBtnClickListener {
-        void onListBtnClick(int position) ;
+    // Adapter에 사용되는 데이터의 개수를 리턴. : 필수 구현
+    @Override
+    public int getCount() {
+        return listViewItemList.size() ;
     }
 
-    // 생성자로부터 전달된 resource id 값을 저장.
-    int resourceId ;
-    // 생성자로부터 전달된 ListBtnClickListener  저장.
-    private ListBtnClickListener listBtnClickListener ;
-
-
-    // ListViewBtnAdapter 생성자. 마지막에 ListBtnClickListener 추가.
-    GroupListAdapter(Context context, int resource, ArrayList<GroupListItem> list, GroupRecommendActivity clickListener) {
-        super(context, resource, list) ;
-
-        // resource id 값 복사. (super로 전달된 resource를 참조할 방법이 없음.)
-        this.resourceId = resource ;
-        this.listBtnClickListener = clickListener ;
-    }
-
-    // 새롭게 만든 Layout을 위한 View를 생성하는 코드
+    // position에 위치한 데이터를 화면에 출력하는데 사용될 View를 리턴. : 필수 구현
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        final int pos = position ;
+        final int pos = position;
         final Context context = parent.getContext();
 
+        // "listview_item" Layout을 inflate하여 convertView 참조 획득.
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(this.resourceId/*R.layout.listview_btn_item*/, parent, false);
+            convertView = inflater.inflate(R.layout.group_item, parent, false);
         }
 
-        final TextView textGroupName = (TextView) convertView.findViewById(R.id.Tv_GroupName);
-        final TextView textGroupInfo = (TextView) convertView.findViewById(R.id.Tv_GroupInfo);
-
+        // 화면에 표시될 View(Layout이 inflate된)으로부터 위젯에 대한 참조 획득
+        ImageView iconImageView = (ImageView) convertView.findViewById(R.id.imageView1) ;
+        TextView titleTextView = (TextView) convertView.findViewById(R.id.textView1) ;
+        TextView descTextView = (TextView) convertView.findViewById(R.id.textView2) ;
 
         // Data Set(listViewItemList)에서 position에 위치한 데이터 참조 획득
-        final GroupListItem GroupListItem = (GroupListItem) getItem(position);
+        GroupListItem listViewItem = listViewItemList.get(position);
 
         // 아이템 내 각 위젯에 데이터 반영
-
-        textGroupName.setText(GroupListItem.getName());
-        textGroupInfo.setText(GroupListItem.getInfo());
-
-        // button1 클릭 시 TextView(textView1)의 내용 변경.
-        Button button1 = (Button) convertView.findViewById(R.id.btn_join);
-        button1.setOnClickListener(new Button.OnClickListener() {
-            public void onClick(View v) {
-                textGroupName.setText("클릭 테스트");
-            }
-        });
+        iconImageView.setImageDrawable(listViewItem.getIcon());
+        titleTextView.setText(listViewItem.getTitle());
+        descTextView.setText(listViewItem.getDesc());
 
         return convertView;
     }
 
-
-    public void onClick(View v) {
-        // ListBtnClickListener(MainActivity)의 onListBtnClick() 함수 호출.
-        if (this.listBtnClickListener != null) {
-            this.listBtnClickListener.onListBtnClick((int)v.getTag()) ;
-        }
+    // 지정한 위치(position)에 있는 데이터와 관계된 아이템(row)의 ID를 리턴. : 필수 구현
+    @Override
+    public long getItemId(int position) {
+        return position ;
     }
 
+    // 지정한 위치(position)에 있는 데이터 리턴 : 필수 구현
+    @Override
+    public Object getItem(int position) {
+        return listViewItemList.get(position) ;
+    }
+
+    // 아이템 데이터 추가를 위한 함수. 개발자가 원하는대로 작성 가능.
+    public void addItem(Drawable icon, String title, String desc) {
+        GroupListItem item = new GroupListItem();
+
+        item.setIcon(icon);
+        item.setTitle(title);
+        item.setDesc(desc);
+
+        listViewItemList.add(item);
+    }
 }

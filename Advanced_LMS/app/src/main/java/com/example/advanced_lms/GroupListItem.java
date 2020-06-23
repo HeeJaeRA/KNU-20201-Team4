@@ -1,26 +1,30 @@
 package com.example.advanced_lms;
 
+import android.graphics.drawable.Drawable;
+
 public class GroupListItem {
+        private Drawable iconDrawable ;
+        private String titleStr ;
+        private String descStr ;
 
-    private String nameStr ;
+        public void setIcon(Drawable icon) {
+            iconDrawable = icon ;
+        }
+        public void setTitle(String title) {
+            titleStr = title ;
+        }
+        public void setDesc(String desc) {
+            descStr = desc ;
+        }
 
-    private String infoStr ;
-
-    public void setName(String text) {
-        nameStr = text ;
-    }
-
-    public void setInfo(String text) {
-        infoStr = text ;
-    }
-
-
-    public String getName() {
-        return this.nameStr ;
-    }
-
-    public String getInfo() {
-        return this.infoStr ;
-    }
-
+        public Drawable getIcon() {
+            return this.iconDrawable ;
+        }
+        public String getTitle() {
+            return this.titleStr ;
+        }
+        public String getDesc() {
+            return this.descStr ;
+        }
 }
+
