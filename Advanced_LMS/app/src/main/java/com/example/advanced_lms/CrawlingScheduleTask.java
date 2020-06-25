@@ -1,5 +1,11 @@
 package com.example.advanced_lms;
 
+import android.app.PendingIntent;
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
+import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -45,6 +51,9 @@ public class CrawlingScheduleTask extends AsyncTask<Void, Void, Map<String, Stri
         String userAgent = "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36";
 
         try {
+            Subject_list = new Subject[8];
+            SizeofSubject = 0;
+
             Connection.Response res = Jsoup.connect("http://lms.knu.kr/ilos/index.acl").header("HOST", "lms.knu.ac.kr").cookies(UserCookie).execute();
             Document doc = res.parse();
 
@@ -68,7 +77,28 @@ public class CrawlingScheduleTask extends AsyncTask<Void, Void, Map<String, Stri
     @Override
     protected void onPostExecute(final Map<String, String> success) {
         if (success.toString().length() > 30) {
-            //Log.e("log", success.toString());
+            ScheduleDBOpener dbOpener = new ScheduleDBOpener(MainActivity.context_main, "Advanced_LMS.db", null, 1);
+            SQLiteDatabase database = dbOpener.getWritableDatabase();
+
+            database.delete("Schedule", null, null);
+
+            String sql = "SELECT * FROM Schedule";
+
+            try {
+                final Cursor query = database.rawQuery(sql, null);
+                query.moveToFirst();
+                query.getString(0);
+            }
+            catch(Exception e) {
+                dbOpener.createTable(database, "Schedule");
+            }
+
+            for(int i = 0; i < SizeofSubject; ++i) {
+                dbOpener.insertTable(database, "Schedule", Subject_list[i].getName(), Subject_list[i].getDATE());
+            }
+
+            database.close();
+
         } else {
             Log.e("log", "Login Fail");
         }
