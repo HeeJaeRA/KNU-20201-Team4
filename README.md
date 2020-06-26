@@ -24,5 +24,7 @@ SE project(Advanced LMS Project)
 * 2020-06-20 소모임 기능선택 Activity, 소모임 추천 Activity 작성-ListView가 작동이 안됨 수정예정<BR>
 =======
 * 2020-06-26 시간표 위젯 기능 구현 완료<BR>
-* 2020-06-26 시간표 알람 기능 구현 완료 -> 조건이 필요함 (https://stackoverflow.com/questions/58245398/how-to-start-an-activity-from-background-in-android-10)
+* 2020-06-26 시간표 알람 기능 구현 완료 -> 조건이 필요함 (https://stackoverflow.com/questions/58245398/how-to-start-an-activity-from-background-in-android-10)<BR>
+* 2020-06-27 소모임 추천, 소모임 등록 엑티비티 작성 -> 소모임 추천 리스트뷰에 소모임 목록 입력 및 클릭시 각 소모임 설명창으로 이동 필요, 소모임 등록 기능구현 필요<BR>
+ 
 >>>>>>> 9ab01bddd88639d0e55fa9b3e6a4fc7fdb7ab1cf
