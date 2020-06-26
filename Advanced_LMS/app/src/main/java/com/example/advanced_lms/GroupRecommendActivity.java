@@ -40,14 +40,12 @@ public class GroupRecommendActivity extends AppCompatActivity {
                     "소모임 이름" + i, "소모임 설명" + i);
         }
 
-        Button b = (Button) findViewById(R.id.btn_join);
-        b.setOnClickListener(new View.OnClickListener() {
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), GroupWebViewActivity.class);
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getApplicationContext(),GroupWebViewActivity.class);
                 startActivity(intent);
             }
         });
-
     }
 }

@@ -1,5 +1,7 @@
 package com.example.advanced_lms;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import java.util.Map;
@@ -53,6 +55,26 @@ public class WebLogic {
     }
 
     public Subject[] getSchedule() {
+        ScheduleDBOpener dbOpener = new ScheduleDBOpener(MainActivity.context_main, "Advanced_LMS.db", null, 1);
+        SQLiteDatabase database = dbOpener.getWritableDatabase();
+
+        String sql = "SELECT * FROM Schedule";
+
+        try {
+            final Cursor query = database.rawQuery(sql, null);
+            query.moveToFirst();
+            query.getString(0);
+        }
+        catch(Exception e) {
+            dbOpener.createTable(database, "Schedule");
+        }
+
+        for(Subject sub : CST.getSchedule()) {
+            dbOpener.insertTable(database, "Schedule", sub.getName(), sub.getDATE());
+        }
+
+        database.close();
+
         return CST.getSchedule();
     }
 

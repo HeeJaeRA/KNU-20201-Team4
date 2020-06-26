@@ -2,8 +2,11 @@ package com.example.advanced_lms;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.icu.text.Transliterator;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,15 +23,30 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Calendar;
+
 public class MainActivity extends AppCompatActivity {
     public static Context context_main;
     public WebLogic w = null;
+
+    AlarmManager alarmManager;
+    PendingIntent pendingIntent;
+    Intent recvIntent;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
         context_main = this;
+
+        alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+
+
+        recvIntent =  new Intent(MainActivity.this, ScheduleAlarmReceiver.class);
+        recvIntent.putExtra("STATE", "alarm on");
+
+        pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0, recvIntent,  PendingIntent.FLAG_UPDATE_CURRENT);
 
         Button imageButton = (Button) findViewById(R.id.btn_login);
         imageButton.setOnClickListener(new View.OnClickListener() {
