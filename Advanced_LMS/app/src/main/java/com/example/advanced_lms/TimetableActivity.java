@@ -98,10 +98,12 @@ public class TimetableActivity extends AppCompatActivity {
         gridView.setAdapter(adapter);
     }
 
+
     public void setItem(int idx, Subject sub) {
         if(sub.getDATE() == "" || sub.getName() == "") return;
         ListItem l = adapter.items.get(idx);
         l.setsName(sub.getName());
         adapter.items.set(idx, l);
     }
+
 }

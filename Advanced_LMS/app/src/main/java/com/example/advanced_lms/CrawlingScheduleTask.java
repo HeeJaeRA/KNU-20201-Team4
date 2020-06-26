@@ -1,5 +1,6 @@
 package com.example.advanced_lms;
 
+import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
@@ -8,6 +9,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.animation.ScaleAnimation;
 
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
@@ -19,6 +21,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -95,7 +98,24 @@ public class CrawlingScheduleTask extends AsyncTask<Void, Void, Map<String, Stri
 
             for(int i = 0; i < SizeofSubject; ++i) {
                 dbOpener.insertTable(database, "Schedule", Subject_list[i].getName(), Subject_list[i].getDATE());
-            }
+                if(((String)(Subject_list[i].getDATE().substring(0, 1))).charAt(0) != '2') {
+                    for(Calendar calander : getTime(Subject_list[i].getDATE()) ) {
+                        try {
+                            ((MainActivity) MainActivity.context_main).alarmManager.set(AlarmManager.RTC_WAKEUP, calander.getTimeInMillis(), ((MainActivity) MainActivity.context_main).pendingIntent);
+                        }catch  (NullPointerException e ) {}
+                    }
+                }
+             }
+
+            /* Video Version
+            Calendar calander = Calendar.getInstance();
+            calander.set(Calendar.DAY_OF_WEEK, Calendar.FRIDAY);
+            calander.set(Calendar.HOUR_OF_DAY, 18);
+            calander.set(Calendar.MINUTE, 8);
+            calander.set(Calendar.SECOND, 35);
+            ((MainActivity)MainActivity.context_main).alarmManager.set(AlarmManager.RTC_WAKEUP, calander.getTimeInMillis(), ((MainActivity)MainActivity.context_main).pendingIntent);
+            */
+
 
             database.close();
 
@@ -103,6 +123,40 @@ public class CrawlingScheduleTask extends AsyncTask<Void, Void, Map<String, Stri
             Log.e("log", "Login Fail");
         }
     }
+
+    public static Calendar[] getTime(String time) {
+        String[] tempStr = time.split(",");
+
+        Calendar calendar[] = new Calendar[tempStr.length];
+        int idx = 0;
+
+        for (String temp : tempStr) {
+            calendar[idx] = Calendar.getInstance();
+            switch(temp.charAt(0)) {
+                case '월': calendar[idx].set(Calendar.DAY_OF_WEEK, Calendar.MONDAY); break;
+                case '화': calendar[idx].set(Calendar.DAY_OF_WEEK, Calendar.TUESDAY); break;
+                case '수': calendar[idx].set(Calendar.DAY_OF_WEEK, Calendar.WEDNESDAY); break;
+                case '목': calendar[idx].set(Calendar.DAY_OF_WEEK, Calendar.THURSDAY); break;
+                case '금': calendar[idx].set(Calendar.DAY_OF_WEEK, Calendar.FRIDAY); break;
+                default : return calendar;
+            }
+            temp = (String) (temp.substring(2, temp.length() - 1));
+
+            temp = temp.split("-")[0];
+
+            calendar[idx].set(Calendar.HOUR_OF_DAY, 8 + Integer.parseInt(temp.substring(0, temp.length() - 1)));
+            String c = (String) (temp.substring(temp.length() - 1));
+            if(c.charAt(0) == 'A') {
+                calendar[idx].set(Calendar.MINUTE, 0);
+            }
+            else {
+                calendar[idx].set(Calendar.MINUTE, 30);
+            }
+        }
+
+        return calendar;
+    }
+
 
     @Override
     protected void onCancelled() {

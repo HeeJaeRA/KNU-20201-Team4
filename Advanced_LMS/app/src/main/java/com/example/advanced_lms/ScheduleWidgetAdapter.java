@@ -11,7 +11,6 @@ import android.widget.RemoteViewsService;
 import java.util.ArrayList;
 
 public class ScheduleWidgetAdapter implements RemoteViewsService.RemoteViewsFactory {
-
     public Context context = null;
     public ArrayList<ScheduleWidgetItem> arrayList;
 

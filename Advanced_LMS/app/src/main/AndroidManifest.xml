@@ -3,6 +3,10 @@
     package="com.example.advanced_lms">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+
 
     <application
         android:allowBackup="true"
@@ -12,11 +16,23 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".ScheduleAlarmScreenActivity"></activity>
+
+        <service
+            android:name=".ScheduleAlarmRingtoneService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <receiver
+            android:name=".ScheduleAlarmReceiver"
+            android:enabled="true"
+            android:exported="true" />
+
         <service
             android:name=".ScheduleWidgetService"
             android:enabled="true"
             android:exported="true"
-            android:permission="android.permission.BIND_REMOTEVIEWS"></service>
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
 
         <receiver android:name=".ScheduleWidget">
             <intent-filter>

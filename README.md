@@ -15,3 +15,4 @@ SE project(Advanced LMS Project)
 * 2020-06-17 소모임 목록, 소모임 가입 크롤링 코드 작성 <BR>
 * 2020-06-17 소모임 탈퇴, 게시글 작성, 덧글 작성, 덧글 삭제, 게시글 목록 로드 기능 구현 <BR>
 * 2020-06-26 시간표 위젯 기능 구현 완료<BR>
+* 2020-06-26 시간표 알람 기능 구현 완료 -> 조건이 필요함 (https://stackoverflow.com/questions/58245398/how-to-start-an-activity-from-background-in-android-10)
