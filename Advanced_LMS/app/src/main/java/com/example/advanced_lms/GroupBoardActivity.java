@@ -13,10 +13,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import static java.lang.Thread.sleep;
 
 public class GroupBoardActivity extends AppCompatActivity {
+    int page = 0;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_board);
+        /*
         ((MainActivity)MainActivity.context_main).w.getGroupList(0); // 1페이지 불러오기.
 
         ListView listview ;
@@ -63,5 +65,7 @@ public class GroupBoardActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+         */
     }
 }
