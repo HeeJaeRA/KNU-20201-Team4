@@ -2,6 +2,7 @@ package com.example.advanced_lms;
 
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
@@ -15,18 +16,56 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.util.Map;
 
-public class CrawlingGroupTask extends AsyncTask<String, Void, Map<String, String>>  {
-    public Map<String, String> UserCookie;
+class Group_Item {
+    private String title;
+    private String Description;
+    private String CLUB_GRP_ID;
 
+    Group_Item(String title, String Description, String CLUB_GRP_ID) {
+        setTitle(title);
+        setDescription(Description);
+        setCLUB_GRP_ID(CLUB_GRP_ID);
+    }
+
+    public void setTitle(String title) { this.title = title; }
+    public void setDescription(String Description) { this.Description = Description; }
+    public void setCLUB_GRP_ID(String CLUB_GRP_ID) { this.CLUB_GRP_ID = CLUB_GRP_ID; }
+    public String getTitle() { return title; }
+    public String getDescription() { return Description; }
+    public String getCLUB_GRP_ID() { return CLUB_GRP_ID; }
+}
+
+public class CrawlingGroupTask extends AsyncTask<String, Void, Map<String, String>>  {
+    public Group_Item GI[];
+    public Map<String, String> UserCookie;
     public CrawlingGroupTask(Map<String, String> UserCookie) { this.UserCookie = UserCookie; }
 
     @Override
     protected Map<String, String> doInBackground(String... voids) {
-        Log.e("Tt", String.valueOf(voids.length));
         String userAgent = "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36";
 
         switch(voids[0]) {
+            case "create":
+                try {
+                    Connection.Response res = Jsoup.connect("http://lms.knu.ac.kr/ilos/community/share_group_insert.acl")
+                            .header("HOST", "lms.knu.ac.kr")
+                            .data("GRP_NM", voids[1],
+                                    "TXT", voids[2],
+                                    "JOIN_DIV", voids[3],
+                                    "encoding", "utf-8")
+                            .ignoreContentType(true)
+                            .userAgent(userAgent)
+                            .cookies(UserCookie)
+                            .method(Connection.Method.POST)
+                            .timeout(5000)
+                            .execute();
+                } catch (IOException e) {
+
+                }
+
+                break;
             case "list" : // 목록 뽑기
+
                 try {
                     Connection.Response res = Jsoup.connect("http://lms.knu.kr/ilos/community/share_group_list.acl")
                             .header("HOST", "lms.knu.ac.kr")
@@ -41,6 +80,8 @@ public class CrawlingGroupTask extends AsyncTask<String, Void, Map<String, Strin
                             .timeout(5000)
                             .execute();
 
+                    GI = new Group_Item[15];
+
                     Document doc = res.parse();
 
                     Elements e = doc.select(".grp_list");
@@ -50,10 +91,10 @@ public class CrawlingGroupTask extends AsyncTask<String, Void, Map<String, Strin
                         String Title = e.get(i).select(".grp_title").text();
                         Element element = e.get(i).select(".grp_txt").first();
                         String Description = element.text() + "_" + element.nextElementSibling().text();
-                        Log.e("Title", Title);
-                        Log.e("Description", Description);
+                        GI[i] = new Group_Item(Title, Description, e.get(i).getElementsByAttribute("onclick").get(0).attr("onclick"));
+                        //Log.e("Title", Title);
+                        //Log.e("Description", Description);
                     }
-
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
                 } catch (UnsupportedEncodingException e) {

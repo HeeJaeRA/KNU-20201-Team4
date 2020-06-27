@@ -5,8 +5,8 @@
 
     <ImageView
         android:id="@+id/imageView1"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_weight="1" />
 
     <LinearLayout
@@ -16,9 +16,9 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textView1"
+            android:id="@+id/GroupTitle"
             android:layout_width="336dp"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_weight="2"
             android:gravity="center_vertical"
             android:text="New Text"
@@ -26,13 +26,12 @@
             android:textSize="15dp" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/GroupDescription"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_weight="1"
             android:text="New Text"
             android:textColor="#666666"
             android:textSize="10dp" />
-
     </LinearLayout>
 </LinearLayout>

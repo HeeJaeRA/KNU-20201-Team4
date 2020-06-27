@@ -40,8 +40,8 @@ public class GroupListAdapter extends BaseAdapter {
 
         // 화면에 표시될 View(Layout이 inflate된)으로부터 위젯에 대한 참조 획득
         ImageView iconImageView = (ImageView) convertView.findViewById(R.id.imageView1) ;
-        TextView titleTextView = (TextView) convertView.findViewById(R.id.textView1) ;
-        TextView descTextView = (TextView) convertView.findViewById(R.id.textView2) ;
+        TextView titleTextView = (TextView) convertView.findViewById(R.id.GroupTitle) ;
+        TextView descTextView = (TextView) convertView.findViewById(R.id.GroupDescription) ;
 
         // Data Set(listViewItemList)에서 position에 위치한 데이터 참조 획득
         GroupListItem listViewItem = listViewItemList.get(position);

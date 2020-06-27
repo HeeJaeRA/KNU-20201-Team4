@@ -3,6 +3,7 @@ package com.example.advanced_lms;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
@@ -76,6 +77,10 @@ public class WebLogic {
         database.close();
 
         return CST.getSchedule();
+    }
+
+    public void createGroup(String Name, String Description, String Permission) {
+        CGT.execute("create", Name, Description, Permission);
     }
 
     public void getGroupList(int PageNumber) {

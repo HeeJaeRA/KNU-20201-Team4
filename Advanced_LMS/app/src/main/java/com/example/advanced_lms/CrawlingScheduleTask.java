@@ -101,7 +101,8 @@ public class CrawlingScheduleTask extends AsyncTask<Void, Void, Map<String, Stri
                 if(((String)(Subject_list[i].getDATE().substring(0, 1))).charAt(0) != '2') {
                     for(Calendar calander : getTime(Subject_list[i].getDATE()) ) {
                         try {
-                            ((MainActivity) MainActivity.context_main).alarmManager.set(AlarmManager.RTC_WAKEUP, calander.getTimeInMillis(), ((MainActivity) MainActivity.context_main).pendingIntent);
+                            // Alarm
+                            //((MainActivity) MainActivity.context_main).alarmManager.set(AlarmManager.RTC_WAKEUP, calander.getTimeInMillis(), ((MainActivity) MainActivity.context_main).pendingIntent);
                         }catch  (NullPointerException e ) {}
                     }
                 }

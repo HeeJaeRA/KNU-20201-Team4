@@ -84,6 +84,7 @@
             android:textColor="@color/btn_login_bg" />
 
         <RadioGroup
+            android:id="@+id/register_check"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
@@ -93,6 +94,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:checked="true"
                 android:text="자동 승인" />
 
             <RadioButton
