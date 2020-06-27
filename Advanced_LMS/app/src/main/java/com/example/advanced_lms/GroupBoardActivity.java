@@ -2,6 +2,7 @@ package com.example.advanced_lms;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -98,15 +99,11 @@ public class GroupBoardActivity extends AppCompatActivity {
                 startActivityForResult(intent, 1);
             }
         });
+    }
 
-        Button buttonGroup = (Button) findViewById(R.id.btn_postWrite);
-        buttonGroup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), PostActivity.class);
-                startActivity(intent);
-            }
-        });
-
+    public void postWriter(View view) {
+        Intent intent = new Intent(getApplicationContext(), PostActivity.class);
+        intent.putExtra("CLUB", getIntent().getStringExtra("CLUB"));
+        startActivityForResult(intent, 1);
     }
 }

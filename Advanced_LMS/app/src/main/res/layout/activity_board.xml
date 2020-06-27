@@ -34,7 +34,8 @@
             android:layout_width="75sp"
             android:layout_height="wrap_content"
             android:background="@drawable/button2"
-            android:text="게시글 작성" />
+            android:text="게시글 작성"
+            android:onClick="postWriter"/>
     </LinearLayout>
 
 </LinearLayout>
