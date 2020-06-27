@@ -35,8 +35,51 @@ class Group_Item {
     public String getCLUB_GRP_ID() { return CLUB_GRP_ID; }
 }
 
+class Group_Board_Comment_Item {
+    public String author;
+    public String body;
+
+    Group_Board_Comment_Item(String author, String body) {
+        setAuthor(author);
+        setBody(body);
+    }
+
+    public void setAuthor(String author) { this.author = author; }
+    public void setBody(String body) { this.body = body; }
+
+    public String getAuthor() { return author; }
+    public String getBody() { return body; }
+}
+
+class Group_Board_Item {
+    private String ArticleNumber;
+    private String title;
+    private String body;
+    private String Timer;
+    public Group_Board_Comment_Item[] Comments;
+    public int Count_Of_Comment = 0;
+
+    Group_Board_Item(String ArticleNumber, String title, String body, String Timer) {
+        setArticleNumber(ArticleNumber);
+        setTitle(title);
+        setBody(body);
+        setTimer(Timer);
+    }
+
+    public void setArticleNumber(String author) { this.ArticleNumber = author; }
+    public void setTitle(String title) { this.title = title; }
+    public void setBody(String body) { this.body = body; }
+    public void setTimer(String Timer) { this.Timer = Timer; }
+
+    public String getArticleNumber() { return ArticleNumber; }
+    public String getTitle() { return title; }
+    public String getBody() { return body; }
+    public String getTimer() { return Timer; }
+}
+
 public class CrawlingGroupTask extends AsyncTask<String, Void, Map<String, String>>  {
     public Group_Item GI[];
+    public Group_Board_Item GBI[];
     public Map<String, String> UserCookie;
     public CrawlingGroupTask(Map<String, String> UserCookie) { this.UserCookie = UserCookie; }
     public boolean isUse = false;
@@ -66,7 +109,6 @@ public class CrawlingGroupTask extends AsyncTask<String, Void, Map<String, Strin
 
                 break;
             case "list" : // 목록 뽑기
-
                 try {
                     Connection.Response res = Jsoup.connect("http://lms.knu.kr/ilos/community/share_group_list.acl")
                             .header("HOST", "lms.knu.ac.kr")
@@ -88,13 +130,10 @@ public class CrawlingGroupTask extends AsyncTask<String, Void, Map<String, Strin
                     Elements e = doc.select(".grp_list");
 
                     for(int i = 0; i < e.size(); ++i) {
-                        Log.e("TT", e.get(i).getElementsByAttribute("onclick").get(0).attr("onclick"));
                         String Title = e.get(i).select(".grp_title").text();
                         Element element = e.get(i).select(".grp_txt").first();
                         String Description = element.text() + "_" + element.nextElementSibling().text();
                         GI[i] = new Group_Item(Title, Description, e.get(i).getElementsByAttribute("onclick").get(0).attr("onclick"));
-                        //Log.e("Title", Title);
-                        //Log.e("Description", Description);
                     }
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
@@ -185,6 +224,7 @@ public class CrawlingGroupTask extends AsyncTask<String, Void, Map<String, Strin
                     Document doc = res.parse();
 
                     Elements e = doc.select(".view_art");
+                    GBI = new Group_Board_Item[e.size()];
 
                     for(int i = 0; i < e.size(); ++i) {
                         String Title = e.get(i).select(".list_title").text();
@@ -192,15 +232,16 @@ public class CrawlingGroupTask extends AsyncTask<String, Void, Map<String, Strin
                         Elements Comments = e.get(i).parent().select(".comment-list");
                         String ArticleNumber = e.get(i).parent().select(".comment_wrap").attr("num");
 
-
-
                         Log.e("Title", Title + " _ " + ArticleNumber);
                         Log.e("Description", Description);
-                        for(Element Comment : Comments) {
-                            String CommentNumber = Comment.select(".comment-addr").attr("id").split("_")[2];
-                            Log.e("Comment", CommentNumber + "/" + Comment.select(".comment-name").text() + ": " +Comment.select(".comment-addr").text());
-                        }
 
+                        GBI[i] = new Group_Board_Item(ArticleNumber, Title, Description, e.get(i).select(".list_title").parents().select(".viewBtn").get(i).text());
+                        GBI[i].Comments = new Group_Board_Comment_Item[Comments.size()];
+                        GBI[i].Count_Of_Comment = Comments.size();
+
+                        for(int j = 0; j < Comments.size(); ++j) {
+                            GBI[i].Comments[j] = new Group_Board_Comment_Item(Comments.get(j).select(".comment-name").text(), Comments.get(j).select(".comment-addr").text());
+                        }
                     }
 
                 } catch (MalformedURLException e) {

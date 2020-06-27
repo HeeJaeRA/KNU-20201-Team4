@@ -30,7 +30,7 @@ public class GroupRecommendActivity extends AppCompatActivity {
 
         context = this;
 
-        ((MainActivity)MainActivity.context_main).w.getGroupList(0); // 1페이지 불러오기.
+        ((MainActivity)MainActivity.context_main).w.getGroupList(page); // 1페이지 불러오기.
 
         ListView listview ;
         final GroupListAdapter adapter;
@@ -134,10 +134,9 @@ public class GroupRecommendActivity extends AppCompatActivity {
 
                     String Option = tt[1].substring(1, tt[1].length() - 1);
 
-                    System.out.println(tt[0].substring(1, tt[0].length() - 1));
-
                     if(Option.length() != 0) {
                         Intent intent = new Intent(getApplicationContext(),GroupBoardActivity.class);
+                        intent.putExtra("CLUB", tt[0].substring(1, tt[0].length() - 1));
                         startActivity(intent);
                     }
                     else {
@@ -145,7 +144,7 @@ public class GroupRecommendActivity extends AppCompatActivity {
                         intent.putExtra("Title", ((MainActivity)MainActivity.context_main).w.CGT.GI[position].getTitle());
                         intent.putExtra("Description", ((MainActivity)MainActivity.context_main).w.CGT.GI[position].getDescription());
                         intent.putExtra("CLUB", tt[0].substring(1, tt[0].length() - 1));
-                        startActivity(intent);
+                        startActivityForResult(intent, 1);
                     }
                 }
             }
@@ -155,7 +154,6 @@ public class GroupRecommendActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Log.e("tt", "여기옴");
 
         ((MainActivity)MainActivity.context_main).w.getGroupList(page);
 
@@ -180,5 +178,7 @@ public class GroupRecommendActivity extends AppCompatActivity {
             String Description[] = ((MainActivity)MainActivity.context_main).w.CGT.GI[i].getDescription().split("_");
             adapter.addItem(ContextCompat.getDrawable(this, R.drawable.logo_knu), ((MainActivity)MainActivity.context_main).w.CGT.GI[i].getTitle(), Description[1] + "\n" + Description[0]);
         }
+
+
     }
 }

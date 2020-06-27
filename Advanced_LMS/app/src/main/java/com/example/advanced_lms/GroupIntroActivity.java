@@ -41,8 +41,8 @@ public class GroupIntroActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 Intent intent = new Intent(getApplicationContext(), GroupBoardActivity.class);
+                intent.putExtra("CLUB", CLUB_NUMBER);
                 startActivity(intent);
-                Log.e("tt", "여기");
                 finish();
             }
         });

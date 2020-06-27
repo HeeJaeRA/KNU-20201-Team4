@@ -45,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
                 TextView pwText = (TextView) findViewById(R.id.et_pass);
                 String pw = pwText.getText().toString();
 
-
                 if(email.length() == 0 || pw.length() == 0) {
                     Toast.makeText(getApplicationContext(),"ID 또는 PW를 확인해주세요", Toast.LENGTH_SHORT).show();
                     return;

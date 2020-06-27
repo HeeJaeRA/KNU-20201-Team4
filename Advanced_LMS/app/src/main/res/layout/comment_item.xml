@@ -17,14 +17,6 @@
             android:layout_weight="0"
             android:textSize="10dp"
             android:text="Writer" />
-
-        <TextView
-            android:id="@+id/Tv_CommentTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0"
-            android:textSize="10dp"
-            android:text="time" />
     </LinearLayout>
 
     <TextView

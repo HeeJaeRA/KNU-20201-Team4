@@ -106,6 +106,8 @@ public class WebLogic {
 
     public void writeComment(int GroupNumber, int ArticleNumber, String Content) {
         CGT = new CrawlingGroupTask(UserCookie);
+        Log.e("Article Number", String.valueOf(ArticleNumber));
+        Log.e("Group Number", String.valueOf(GroupNumber));
         CGT.execute("AddComment", Integer.toString(GroupNumber), Integer.toString(ArticleNumber), Content);
     }
 

@@ -76,14 +76,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1" />
 
-        <Button
-            android:id="@+id/btn_contentList"
-            android:layout_width="50dp"
-            android:layout_height="40dp"
-            android:background="@drawable/button2"
-            android:text="목록"
-            android:textColor="#ffffff" />
-
     </LinearLayout>
 
     <LinearLayout
@@ -95,7 +87,7 @@
             android:id="@+id/Tv_commentCount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="댓글0개" />
+            android:text="댓글 0개" />
 
         <ListView
             android:id="@+id/list_comment"
@@ -115,7 +107,7 @@
                 android:layout_weight="1"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="댓글입력" />
+                android:hint="댓글을 입력하세요." />
 
             <Button
                 android:id="@+id/btn_commentPush"
