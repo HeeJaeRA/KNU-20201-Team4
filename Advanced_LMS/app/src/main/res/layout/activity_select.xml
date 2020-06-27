@@ -40,41 +40,38 @@
             android:id="@+id/btn_Timetable"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="20sp"
             android:layout_marginBottom="20sp"
-            android:layout_marginRight="5sp"
             android:layout_marginLeft="15sp"
+            android:layout_marginRight="5sp"
+            android:layout_marginTop="20sp"
             android:layout_weight="1"
-            android:background="#797977"
-            android:text="시간표"
+            android:background="@drawable/timetable"
             android:textColor="@color/white" />
 
         <Button
             android:id="@+id/btn_Group"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="20dip"
-            android:layout_weight="1"
-            android:background="#797977"
             android:layout_marginBottom="20sp"
             android:layout_marginLeft="10sp"
             android:layout_marginRight="10sp"
-            android:text="소모임"
+            android:layout_marginTop="20dip"
+            android:layout_weight="1"
+            android:background="@drawable/group"
             android:textColor="@color/white" />
 
         <Button
-            android:theme="@style/Widget.AppCompat.Light.ActionButton"
             android:id="@+id/Setting"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="20sp"
             android:layout_marginBottom="20sp"
-            android:layout_marginRight="15sp"
             android:layout_marginLeft="5sp"
+            android:layout_marginRight="15sp"
+            android:layout_marginTop="20sp"
             android:layout_weight="1"
-            android:background="#797977"
-            android:text="설정"
-            android:textColor="@color/white" />
+            android:background="@drawable/setting"
+            android:textColor="@color/white"
+            android:theme="@style/Widget.AppCompat.Light.ActionButton" />
     </LinearLayout>
 
     <Space

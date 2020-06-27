@@ -44,13 +44,7 @@
                 android:resource="@xml/schedule_widget_info" />
         </receiver>
 
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".MainActivity" />
         <activity android:name=".SelectActivity" />
         <activity android:name=".TimetableActivity" />
         <activity android:name=".GroupSelectActivity"/>
@@ -60,6 +54,13 @@
         <activity android:name=".GroupIntroActivity"/>
         <activity android:name=".GroupBoardActivity"/>
         <activity android:name=".GroupBoardContentActivity"/>
+        <activity android:name=".Splash">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
     </application>
 
 </manifest>
