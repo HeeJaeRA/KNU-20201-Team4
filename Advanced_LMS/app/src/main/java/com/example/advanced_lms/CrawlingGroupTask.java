@@ -39,11 +39,12 @@ public class CrawlingGroupTask extends AsyncTask<String, Void, Map<String, Strin
     public Group_Item GI[];
     public Map<String, String> UserCookie;
     public CrawlingGroupTask(Map<String, String> UserCookie) { this.UserCookie = UserCookie; }
+    public boolean isUse = false;
 
     @Override
     protected Map<String, String> doInBackground(String... voids) {
         String userAgent = "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36";
-
+        isUse = true;
         switch(voids[0]) {
             case "create":
                 try {
@@ -305,7 +306,9 @@ public class CrawlingGroupTask extends AsyncTask<String, Void, Map<String, Strin
     }
 
     @Override
-    protected void onPostExecute(final Map<String, String> success) {  }
+    protected void onPostExecute(final Map<String, String> success) {
+        isUse = false;
+    }
 
     @Override
     protected void onCancelled() {

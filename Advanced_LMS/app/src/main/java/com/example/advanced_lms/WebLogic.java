@@ -80,34 +80,42 @@ public class WebLogic {
     }
 
     public void createGroup(String Name, String Description, String Permission) {
+        CGT = new CrawlingGroupTask(UserCookie);
         CGT.execute("create", Name, Description, Permission);
     }
 
     public void getGroupList(int PageNumber) {
+        CGT = new CrawlingGroupTask(UserCookie);
         CGT.execute("list", Integer.toString(PageNumber * 15 + 1));
     }
 
     public void setRegisterGroup(int GroupNumber) {
+        CGT = new CrawlingGroupTask(UserCookie);
         CGT.execute("Register", Integer.toString(GroupNumber));
     }
 
     public void writeGroup(int GroupNumber, String Title, String Content) {
+        CGT = new CrawlingGroupTask(UserCookie);
         CGT.execute("writeGroup", Integer.toString(GroupNumber), Title, Content);
     }
 
     public void getListGroupContent(int GroupNumber) {
+        CGT = new CrawlingGroupTask(UserCookie);
         CGT.execute("ListGroupContent", Integer.toString(GroupNumber));
     }
 
     public void writeComment(int GroupNumber, int ArticleNumber, String Content) {
+        CGT = new CrawlingGroupTask(UserCookie);
         CGT.execute("AddComment", Integer.toString(GroupNumber), Integer.toString(ArticleNumber), Content);
     }
 
     public void RemoveComment(int GroupNumber, int ArticleNumber, int CommentNumber) {
+        CGT = new CrawlingGroupTask(UserCookie);
         CGT.execute("RemoveComment", Integer.toString(GroupNumber), Integer.toString(ArticleNumber), Integer.toString(CommentNumber));
     }
 
     public void DropGroup(int GroupNumber) {
+        CGT = new CrawlingGroupTask(UserCookie);
         CGT.execute("DropGroup", Integer.toString(GroupNumber));
     }
 }
