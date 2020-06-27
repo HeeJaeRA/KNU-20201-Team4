@@ -23,8 +23,6 @@ public class GroupRecommendActivity extends AppCompatActivity {
     Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        page = 0;
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grouprecommend);
 
@@ -124,6 +122,16 @@ public class GroupRecommendActivity extends AppCompatActivity {
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                if(((MainActivity)MainActivity.context_main).w.CGT.GI == null) {
+                    ((MainActivity) MainActivity.context_main).w.getGroupList(page);
+                    try { // 페이지 불러올 동안 슬립.
+                        sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+
                 String str = ((MainActivity)MainActivity.context_main).w.CGT.GI[position].getCLUB_GRP_ID();
                 Pattern pattern = Pattern.compile("\'.+\'");
                 Matcher Finder = pattern.matcher(str);
@@ -180,5 +188,33 @@ public class GroupRecommendActivity extends AppCompatActivity {
         }
 
 
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String str = ((MainActivity)MainActivity.context_main).w.CGT.GI[position].getCLUB_GRP_ID();
+                Pattern pattern = Pattern.compile("\'.+\'");
+                Matcher Finder = pattern.matcher(str);
+
+                if(Finder.find()) {
+                    String ret = Finder.group().replace(" ", "");
+                    String tt[] = ret.split(",");
+
+                    String Option = tt[1].substring(1, tt[1].length() - 1);
+
+                    if(Option.length() != 0) {
+                        Intent intent = new Intent(getApplicationContext(),GroupBoardActivity.class);
+                        intent.putExtra("CLUB", tt[0].substring(1, tt[0].length() - 1));
+                        startActivity(intent);
+                    }
+                    else {
+                        Intent intent = new Intent(getApplicationContext(),GroupIntroActivity.class);
+                        intent.putExtra("Title", ((MainActivity)MainActivity.context_main).w.CGT.GI[position].getTitle());
+                        intent.putExtra("Description", ((MainActivity)MainActivity.context_main).w.CGT.GI[position].getDescription());
+                        intent.putExtra("CLUB", tt[0].substring(1, tt[0].length() - 1));
+                        startActivityForResult(intent, 1);
+                    }
+                }
+            }
+        });
     }
 }

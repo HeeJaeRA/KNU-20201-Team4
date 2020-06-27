@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
 
+
                 w = new WebLogic(email, pw);
 
                 if(!w.attemptLogin()) {
