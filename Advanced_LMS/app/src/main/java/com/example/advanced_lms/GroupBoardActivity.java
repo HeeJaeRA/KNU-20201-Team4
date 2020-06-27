@@ -9,7 +9,6 @@ import android.widget.ListView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
 import static java.lang.Thread.sleep;
 
@@ -99,5 +98,15 @@ public class GroupBoardActivity extends AppCompatActivity {
                 startActivityForResult(intent, 1);
             }
         });
+
+        Button buttonGroup = (Button) findViewById(R.id.btn_postWrite);
+        buttonGroup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), PostActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 }
