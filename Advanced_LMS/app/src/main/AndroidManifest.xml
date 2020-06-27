@@ -57,6 +57,9 @@
         <activity android:name=".GroupRecommendActivity"/>
         <activity android:name=".GroupWebViewActivity"/>
         <activity android:name=".GroupAddActivity"/>
+        <activity android:name=".GroupIntroActivity"/>
+        <activity android:name=".GroupBoardActivity"/>
+        <activity android:name=".GroupBoardContentActivity"/>
     </application>
 
 </manifest>

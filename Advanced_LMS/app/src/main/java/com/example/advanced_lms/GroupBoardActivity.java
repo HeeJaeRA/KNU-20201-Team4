@@ -7,27 +7,26 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
 import static java.lang.Thread.sleep;
 
-public class GroupRecommendActivity extends AppCompatActivity {
+public class GroupBoardActivity extends AppCompatActivity {
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_grouprecommend);
-
+        setContentView(R.layout.activity_board);
         ((MainActivity)MainActivity.context_main).w.getGroupList(0); // 1페이지 불러오기.
 
         ListView listview ;
-        GroupListAdapter adapter;
+        BoardListAdapter adapter;
 
         // Adapter 생성
-        adapter = new GroupListAdapter() ;
+        adapter = new BoardListAdapter() ;
 
         // 리스트뷰 참조 및 Adapter달기
-        listview = (ListView) findViewById(R.id.list_group);
+        listview = (ListView) findViewById(R.id.list_board);
         listview.setAdapter(adapter);
 
         try { // 페이지 불러올 동안 슬립.
@@ -39,7 +38,7 @@ public class GroupRecommendActivity extends AppCompatActivity {
 
         for(int i = 0; i < 15; i++) {
             String Description[] = ((MainActivity)MainActivity.context_main).w.CGT.GI[i].getDescription().split("_");
-            adapter.addItem(ContextCompat.getDrawable(this, R.drawable.logo_knu), ((MainActivity)MainActivity.context_main).w.CGT.GI[i].getTitle(), Description[1] + "\n" + Description[0]);
+            adapter.addItem(((MainActivity)MainActivity.context_main).w.CGT.GI[i].getTitle(), Description[1] + "\n" + Description[0]);
         }
 
         Button btnprev = (Button) findViewById(R.id.btn_pre);
@@ -60,7 +59,7 @@ public class GroupRecommendActivity extends AppCompatActivity {
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getApplicationContext(),GroupIntroActivity.class);
+                Intent intent = new Intent(getApplicationContext(),GroupBoardContentActivity.class);
                 startActivity(intent);
             }
         });

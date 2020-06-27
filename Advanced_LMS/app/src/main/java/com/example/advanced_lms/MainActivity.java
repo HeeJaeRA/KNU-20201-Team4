@@ -1,29 +1,16 @@
 package com.example.advanced_lms;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
-import android.icu.text.Transliterator;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.GridView;
-import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.Calendar;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
     public static Context context_main;
@@ -57,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
                 TextView pwText = (TextView) findViewById(R.id.et_pass);
                 String pw = pwText.getText().toString();
+
 
                 if(email.length() == 0 || pw.length() == 0) {
                     Toast.makeText(getApplicationContext(),"ID 또는 PW를 확인해주세요", Toast.LENGTH_SHORT).show();
