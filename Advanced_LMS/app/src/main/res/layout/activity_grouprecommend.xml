@@ -5,19 +5,35 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/imageView2"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1.3"
-        app:srcCompat="@drawable/group_up" />
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_height="35dp"
+            app:srcCompat="@drawable/lms_logo" />
+
+        <TextView
+            android:id="@+id/bottomBar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="#000000"
+            android:textSize="2dp"
+            android:scrollbars="vertical"
+            android:background="@drawable/border"/>
+    </LinearLayout>
+
 
     <ListView
         android:id="@+id/list_group"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1" >
-
     </ListView>
 
     <LinearLayout
@@ -31,8 +47,7 @@
             android:id="@+id/btn_pre"
             android:layout_width="75sp"
             android:layout_height="wrap_content"
-            android:background="@drawable/button2"
-
+            android:fontFamily="@font/nanumsquare"
             android:text="Prev" />
 
         <Space
@@ -44,7 +59,7 @@
             android:id="@+id/btn_next"
             android:layout_width="75sp"
             android:layout_height="wrap_content"
-            android:background="@drawable/button2"
+            android:fontFamily="@font/nanumsquare"
             android:text="Next" />
     </LinearLayout>
 

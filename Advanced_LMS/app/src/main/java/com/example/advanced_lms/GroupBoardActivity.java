@@ -40,7 +40,7 @@ public class GroupBoardActivity extends AppCompatActivity {
 
         for(int i = 0; i < 100; i++) {
             try {
-                adapter.addItem(((MainActivity) MainActivity.context_main).w.CGT.GBI[i].getTitle(), ((MainActivity) MainActivity.context_main).w.CGT.GBI[i].getBody());
+                adapter.addItem("  " + ((MainActivity) MainActivity.context_main).w.CGT.GBI[i].getTitle(), "  " + ((MainActivity) MainActivity.context_main).w.CGT.GBI[i].getBody());
             }
             catch (NullPointerException e) {}
             catch (IndexOutOfBoundsException e) { break; }

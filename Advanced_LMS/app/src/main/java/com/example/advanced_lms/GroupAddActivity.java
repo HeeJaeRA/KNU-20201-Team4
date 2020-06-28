@@ -40,5 +40,13 @@ public class GroupAddActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        Button close_button = (Button) findViewById(R.id.btn_cancel);
+        close_button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 }

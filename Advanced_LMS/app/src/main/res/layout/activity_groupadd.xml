@@ -5,13 +5,28 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/imageView4"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="54dp"
-        android:layout_weight="0"
-        android:background="#4F5254"
-        app:srcCompat="@drawable/group_up" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_height="35dp"
+            app:srcCompat="@drawable/lms_logo" />
+
+        <TextView
+            android:id="@+id/bottomBar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="#000000"
+            android:textSize="2dp"
+            android:scrollbars="vertical"
+            android:background="@drawable/border"/>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,16 +39,16 @@
             android:layout_width="420dp"
             android:layout_height="40sp"
             android:layout_weight="5"
-            android:background="@color/bg_register"
+            android:background="#dae5e4"
             android:gravity="center"
-            android:text="소모임 명"
-            android:textColor="@color/btn_login_bg" />
+            android:text="소모임 명" />
 
         <EditText
             android:id="@+id/input_groupName"
             android:layout_width="match_parent"
             android:layout_height="40sp"
             android:layout_weight="1"
+            android:fontFamily="@font/nanumsquare"
             android:hint="소모임명 입력" />
 
     </LinearLayout>
@@ -49,11 +64,10 @@
             android:layout_width="420dp"
             android:layout_height="match_parent"
             android:layout_weight="5"
-            android:background="@color/bg_register"
+            android:background="#dae5e4"
             android:gravity="center"
-
-            android:text="소모임소개"
-            android:textColor="@color/btn_login_bg" />
+            android:fontFamily="@font/nanumsquare"
+            android:text="소모임소개" />
 
         <EditText
             android:id="@+id/input_groupdescription"
@@ -61,7 +75,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:alpha="1"
-            android:background="@drawable/logo_knu4"
+
+            android:fontFamily="@font/nanumsquare"
             android:hint="소개말을 적어주세요" />
 
     </LinearLayout>
@@ -78,10 +93,10 @@
             android:layout_height="50sp"
             android:layout_gravity="center"
             android:layout_weight="0"
-            android:background="@color/bg_register"
+            android:background="#dae5e4"
             android:gravity="center"
             android:text="회원가입"
-            android:textColor="@color/btn_login_bg" />
+            android:fontFamily="@font/nanumsquare" />
 
         <RadioGroup
             android:id="@+id/register_check"
@@ -95,6 +110,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:checked="true"
+                android:fontFamily="@font/nanumsquare"
                 android:text="자동 승인" />
 
             <RadioButton
@@ -102,6 +118,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:fontFamily="@font/nanumsquare"
                 android:text="승인 확인" />
         </RadioGroup>
 
@@ -120,6 +137,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0"
+            android:fontFamily="@font/nanumsquare"
             android:text="등록" />
 
         <Button
@@ -127,6 +145,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0"
+            android:fontFamily="@font/nanumsquare"
             android:text="취소" />
     </LinearLayout>
 

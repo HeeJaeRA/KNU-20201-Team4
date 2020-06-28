@@ -21,6 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Advenced LMS"
+            android:fontFamily="@font/nanumsquare"
             android:textColor="#FFFFFF"
             android:textSize="36sp"
             android:textStyle="bold"
@@ -60,6 +61,7 @@
             android:inputType="textCapWords"
             android:padding="10dp"
             android:textColor="@color/input_register"
+            android:fontFamily="@font/nanumsquare"
             android:textColorHint="@color/input_register_hint" />
 
         <EditText
@@ -72,6 +74,7 @@
             android:inputType="textPassword"
             android:padding="10dp"
             android:textColor="@color/input_register"
+            android:fontFamily="@font/nanumsquare"
             android:textColorHint="@color/input_register_hint" />
 
         <Button
@@ -81,6 +84,7 @@
             android:layout_marginTop="20dip"
             android:background="@drawable/button"
             android:text="@string/btn_login"
+            android:fontFamily="@font/nanumsquare"
             android:textColor="@color/white" />
 
     </LinearLayout>

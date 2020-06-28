@@ -25,6 +25,7 @@
         android:text="Advenced LMS"
         android:textColor="#c83633"
         android:textSize="30sp"
+        android:fontFamily="@font/nanumsquare"
         android:textStyle="bold" />
 
     <LinearLayout

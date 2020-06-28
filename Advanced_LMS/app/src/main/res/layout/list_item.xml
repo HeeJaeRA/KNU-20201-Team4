@@ -12,6 +12,7 @@
         android:textSize="10dp"
         android:textStyle="bold"
         android:text="sub name"
+        android:fontFamily="@font/nanumsquare"
         android:background="@drawable/border"/>
 
 </LinearLayout>

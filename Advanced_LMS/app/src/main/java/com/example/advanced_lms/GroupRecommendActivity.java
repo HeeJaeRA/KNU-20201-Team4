@@ -46,10 +46,9 @@ public class GroupRecommendActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-
         for(int i = 0; i < 15; i++) {
             String Description[] = ((MainActivity)MainActivity.context_main).w.CGT.GI[i].getDescription().split("_");
-            adapter.addItem(ContextCompat.getDrawable(this, R.drawable.logo_knu), ((MainActivity)MainActivity.context_main).w.CGT.GI[i].getTitle(), Description[1] + "\n" + Description[0]);
+            adapter.addItem(ContextCompat.getDrawable(this, R.drawable.logo_knu), ((MainActivity)MainActivity.context_main).w.CGT.GI[i].getTitle(), Description[1] + "\n\n" + Description[0]);
         }
 
         Button btnprev = (Button) findViewById(R.id.btn_pre);
@@ -83,7 +82,7 @@ public class GroupRecommendActivity extends AppCompatActivity {
 
                 for(int i = 0; i < 15; i++) {
                     String Description[] = ((MainActivity)MainActivity.context_main).w.CGT.GI[i].getDescription().split("_");
-                    adapter.addItem(ContextCompat.getDrawable(GroupRecommendActivity.this, R.drawable.logo_knu), ((MainActivity)MainActivity.context_main).w.CGT.GI[i].getTitle(), Description[1] + "\n" + Description[0]);
+                    adapter.addItem(ContextCompat.getDrawable(GroupRecommendActivity.this, R.drawable.logo_knu), ((MainActivity)MainActivity.context_main).w.CGT.GI[i].getTitle(), Description[1] + "\n\n" + Description[0]);
                 }
             }
         });
@@ -114,7 +113,7 @@ public class GroupRecommendActivity extends AppCompatActivity {
 
                 for(int i = 0; i < 15; i++) {
                     String Description[] = ((MainActivity)MainActivity.context_main).w.CGT.GI[i].getDescription().split("_");
-                    adapter.addItem(ContextCompat.getDrawable(GroupRecommendActivity.this, R.drawable.logo_knu), ((MainActivity)MainActivity.context_main).w.CGT.GI[i].getTitle(), Description[1] + "\n" + Description[0]);
+                    adapter.addItem(ContextCompat.getDrawable(GroupRecommendActivity.this, R.drawable.logo_knu), ((MainActivity)MainActivity.context_main).w.CGT.GI[i].getTitle(), Description[1] + "\n\n" + Description[0]);
                 }
             }
         });
@@ -184,7 +183,7 @@ public class GroupRecommendActivity extends AppCompatActivity {
 
         for(int i = 0; i < 15; i++) {
             String Description[] = ((MainActivity)MainActivity.context_main).w.CGT.GI[i].getDescription().split("_");
-            adapter.addItem(ContextCompat.getDrawable(this, R.drawable.logo_knu), ((MainActivity)MainActivity.context_main).w.CGT.GI[i].getTitle(), Description[1] + "\n" + Description[0]);
+            adapter.addItem(ContextCompat.getDrawable(this, R.drawable.logo_knu), ((MainActivity)MainActivity.context_main).w.CGT.GI[i].getTitle(), Description[1] + "\n\n" + Description[0]);
         }
 
 
