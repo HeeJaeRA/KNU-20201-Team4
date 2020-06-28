@@ -25,4 +25,8 @@ public class PostActivity extends AppCompatActivity {
         Toast.makeText(PostActivity.this, "게시글 업로드 완료", Toast.LENGTH_SHORT);
         finish();
     }
+
+    public void canclePost(View view) {
+        finish();
+    }
 }
