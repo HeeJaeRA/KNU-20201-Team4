@@ -2,6 +2,7 @@ package com.example.advanced_lms;
 
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -13,6 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import org.w3c.dom.Comment;
 import org.w3c.dom.Text;
+
+import static java.lang.Thread.*;
 
 public class GroupBoardContentActivity extends AppCompatActivity {
     CommentListAdapter adapter;
@@ -67,9 +70,21 @@ public class GroupBoardContentActivity extends AppCompatActivity {
                     //Comment.getText()
                     adapter.addItem("나 (1초 전)", Comment.getText().toString());
 
+                    InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(Comment.getWindowToken(), 0);
+
+
                     ((MainActivity)MainActivity.context_main).w.writeComment(Integer.parseInt(getIntent().getStringExtra("CLUB")), Integer.parseInt(((MainActivity) MainActivity.context_main).w.CGT.GBI[Integer.parseInt(getIntent().getStringExtra("INDEX"))].getArticleNumber()), Comment.getText().toString());
                     Comment.setText("");
                     Toast.makeText(GroupBoardContentActivity.this, "작성 완료!", Toast.LENGTH_SHORT).show();
+
+                    try {
+                        sleep(500);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                    ((MainActivity)MainActivity.context_main).w.getListGroupContent(Integer.parseInt(getIntent().getStringExtra("CLUB")));
                 }
                 else {
                     Toast.makeText(GroupBoardContentActivity.this, "댓글을 입력해주세요.", Toast.LENGTH_SHORT).show();

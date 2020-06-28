@@ -41,7 +41,7 @@ public class GroupRecommendActivity extends AppCompatActivity {
         listview.setAdapter(adapter);
 
         try { // 페이지 불러올 동안 슬립.
-            sleep(1500);
+            sleep(500);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -75,7 +75,7 @@ public class GroupRecommendActivity extends AppCompatActivity {
                 listview.setAdapter(adapter);
 
                 try { // 페이지 불러올 동안 슬립.
-                    sleep(1500);
+                    sleep(500);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -106,7 +106,7 @@ public class GroupRecommendActivity extends AppCompatActivity {
                 listview.setAdapter(adapter);
 
                 try { // 페이지 불러올 동안 슬립.
-                    sleep(1500);
+                    sleep(500);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -126,7 +126,7 @@ public class GroupRecommendActivity extends AppCompatActivity {
                 if(((MainActivity)MainActivity.context_main).w.CGT.GI == null) {
                     ((MainActivity) MainActivity.context_main).w.getGroupList(page);
                     try { // 페이지 불러올 동안 슬립.
-                        sleep(1000);
+                        sleep(500);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -176,7 +176,7 @@ public class GroupRecommendActivity extends AppCompatActivity {
         listview.setAdapter(adapter);
 
         try { // 페이지 불러올 동안 슬립.
-            sleep(1500);
+            sleep(500);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -191,6 +191,14 @@ public class GroupRecommendActivity extends AppCompatActivity {
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if(((MainActivity)MainActivity.context_main).w.CGT.GI == null) {
+                    ((MainActivity)MainActivity.context_main).w.getGroupList(page);
+                    try { // 페이지 불러올 동안 슬립.
+                        sleep(500);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
                 String str = ((MainActivity)MainActivity.context_main).w.CGT.GI[position].getCLUB_GRP_ID();
                 Pattern pattern = Pattern.compile("\'.+\'");
                 Matcher Finder = pattern.matcher(str);

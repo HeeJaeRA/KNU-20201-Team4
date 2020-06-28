@@ -36,7 +36,7 @@ public class GroupIntroActivity extends AppCompatActivity {
             public void onClick(View view) {
                 ((MainActivity)MainActivity.context_main).w.setRegisterGroup(Integer.parseInt(CLUB_NUMBER));
                 try {
-                    Thread.sleep(1500);
+                    Thread.sleep(500);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

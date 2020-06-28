@@ -22,7 +22,7 @@ public class PostActivity extends AppCompatActivity {
         EditText Title = (EditText)findViewById(R.id.Et_title);
         EditText Content = (EditText)findViewById(R.id.Et_post);
         ((MainActivity)MainActivity.context_main).w.writeGroup(CLUB, Title.getText().toString(), Content.getText().toString());
-        Toast.makeText(this, "게시글 업로드 완료", Toast.LENGTH_SHORT);
+        Toast.makeText(PostActivity.this, "게시글 업로드 완료", Toast.LENGTH_SHORT);
         finish();
     }
 }
