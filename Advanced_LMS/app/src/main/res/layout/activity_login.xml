@@ -15,16 +15,6 @@
         android:orientation="vertical"
         android:layout_marginTop="-80dp"
         android:padding="10dp">
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Advenced LMS"
-            android:fontFamily="@font/nanumsquare"
-            android:textColor="#FFFFFF"
-            android:textSize="36sp"
-            android:textStyle="bold"
-            tools:text="Advenced LMS" />
 
         <ImageView
             android:id="@+id/imageView"
