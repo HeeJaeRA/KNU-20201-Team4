@@ -5,8 +5,11 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +39,10 @@ public class MainActivity extends AppCompatActivity {
         pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0, recvIntent,  PendingIntent.FLAG_UPDATE_CURRENT);
 
         Button imageButton = (Button) findViewById(R.id.btn_login);
+
+        EditText pass = (EditText)findViewById(R.id.et_pass);
+        pass.setInputType( InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD );
+        pass.setTransformationMethod(PasswordTransformationMethod.getInstance());
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

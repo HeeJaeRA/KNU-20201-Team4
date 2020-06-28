@@ -31,6 +31,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
+        android:layout_marginTop="20dp"
         android:layout_weight="0"
         android:orientation="horizontal">
 
@@ -48,6 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="40sp"
             android:layout_weight="1"
+            android:gravity="left"
             android:fontFamily="@font/nanumsquare"
             android:hint="소모임명 입력" />
 
@@ -56,7 +59,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="2"
+        android:layout_weight="1.5"
         android:orientation="horizontal">
 
         <TextView
@@ -64,6 +67,7 @@
             android:layout_width="420dp"
             android:layout_height="match_parent"
             android:layout_weight="5"
+
             android:background="#dae5e4"
             android:gravity="center"
             android:fontFamily="@font/nanumsquare"
@@ -73,11 +77,12 @@
             android:id="@+id/input_groupdescription"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:gravity="left|center"
             android:layout_weight="1"
             android:alpha="1"
-
             android:fontFamily="@font/nanumsquare"
-            android:hint="소개말을 적어주세요" />
+            android:hint="소개말을 적어주세요"
+            android:inputType="textMultiLine"/>
 
     </LinearLayout>
 
@@ -128,25 +133,33 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="5dp"
         android:layout_weight="4"
-        android:gravity="right"
+        android:gravity="right|bottom"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/btn_reg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="75dp"
+            android:layout_height="40dp"
             android:layout_weight="0"
-            android:fontFamily="@font/nanumsquare"
-            android:text="등록" />
+            android:background="@drawable/save"
+            android:fontFamily="@font/nanumsquare" />
+
+        <Space
+            android:layout_width="10dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0" />
 
         <Button
             android:id="@+id/btn_cancel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="75dp"
+            android:layout_height="40dp"
+            android:layout_marginRight="10dp"
             android:layout_weight="0"
-            android:fontFamily="@font/nanumsquare"
-            android:text="취소" />
+            android:background="@drawable/cancel"
+            android:fontFamily="@font/nanumsquare" />
     </LinearLayout>
 
 </LinearLayout>

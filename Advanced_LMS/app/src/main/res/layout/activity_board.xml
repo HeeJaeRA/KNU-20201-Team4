@@ -28,30 +28,37 @@
             android:background="@drawable/border"/>
     </LinearLayout>
 
-    <ListView
-        android:id="@+id/list_board"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1" />
+        android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0"
-        android:orientation="horizontal">
-
-        <Space
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <ListView
+            android:id="@+id/list_board"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_weight="1" />
 
-        <Button
-            android:id="@+id/btn_postWrite"
-            android:layout_width="75sp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="게시글 작성"
-            android:fontFamily="@font/nanumsquare"
-            android:onClick="postWriter"/>
-    </LinearLayout>
+            android:layout_gravity="bottom"
+            android:layout_weight="0"
+            android:orientation="horizontal">
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <Button
+                android:id="@+id/btn_postWrite"
+                android:layout_width="75sp"
+                android:layout_height="75sp"
+                android:background="@drawable/post"
+                android:fontFamily="@font/nanumsquare"
+                android:onClick="postWriter" />
+        </LinearLayout>
+
+    </FrameLayout>
 
 </LinearLayout>

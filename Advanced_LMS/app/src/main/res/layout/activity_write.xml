@@ -28,6 +28,10 @@
             android:background="@drawable/border"/>
     </LinearLayout>
 
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -37,7 +41,7 @@
             android:id="@+id/textView11"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="10dp"
             android:layout_marginRight="5dp"
             android:text="제목"
             android:textColor="#000000"
@@ -50,6 +54,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
+            android:layout_marginRight="10dp"
             android:hint="제목을 입력하세요"
             android:inputType="textPersonName"
             android:fontFamily="@font/nanumsquare"
@@ -57,17 +62,41 @@
 
     </LinearLayout>
 
+<!--    <EditText-->
+<!--        android:id="@+id/Et_post"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="502dp"-->
+<!--        android:layout_marginLeft="10dp"-->
+<!--        android:layout_marginRight="10dp"-->
+<!--        android:background="@drawable/edittext_border"-->
+<!--        android:ems="10"-->
+<!--        android:fontFamily="@font/nanumsquare"-->
+<!--        android:hint="내용을 입력하세요"-->
+<!--        android:inputType="textPersonName" />-->
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="10dp"
+        android:layout_weight="0" />
+
     <EditText
         android:id="@+id/Et_post"
         android:layout_width="match_parent"
-        android:layout_height="502dp"
+        android:layout_height="match_parent"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
+        android:layout_marginBottom="20dp"
+        android:layout_weight="0.3"
         android:background="@drawable/edittext_border"
         android:ems="10"
         android:fontFamily="@font/nanumsquare"
+        android:gravity="start|top"
         android:hint="내용을 입력하세요"
-        android:inputType="textPersonName" />
+        android:inputType="textMultiLine" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <LinearLayout
         android:layout_marginTop="5dp"
@@ -79,22 +108,27 @@
 
         <Button
             android:id="@+id/btn_postSave"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="75dp"
+            android:layout_height="40dp"
             android:layout_weight="0"
+            android:background="@drawable/save"
             android:fontFamily="@font/nanumsquare"
-            android:text="저장"
-            android:onClick="sendPost"/>
+            android:onClick="sendPost" />
+
+        <Space
+            android:layout_width="10dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0" />
 
         <Button
             android:id="@+id/btn_postCancel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="75dp"
+            android:layout_height="40dp"
+            android:layout_marginRight="5dp"
             android:layout_weight="0"
+            android:background="@drawable/cancel"
             android:fontFamily="@font/nanumsquare"
-            android:text="취소"
-            android:onClick="canclePost"
-            android:layout_marginRight="5dp"/>
+            android:onClick="canclePost" />
     </LinearLayout>
 
 </LinearLayout>
